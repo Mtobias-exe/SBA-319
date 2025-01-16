@@ -33,6 +33,7 @@ router.put('/:id', async(req, res)=>{
   }
 })
 
+//delete pastry
 router.delete('/:id', async (req, res)=>{
   try {
   const deletedPastry = await Pastry.findByIdAndDelete(req.params.id);
