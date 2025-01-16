@@ -6,6 +6,10 @@ const conn = require('./db/conn')
 
 conn()
 
+//home route
+app.get('/', (req, res)=>{
+    res.send('Home Page')
+})
 
 
 app.listen(port, ()=>{

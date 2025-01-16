@@ -1,15 +1,22 @@
-const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
 
-const conn = async () => {
+const connectionString = process.env.MONGO_URI || "";
+
+const client = new MongoClient(connectionString);
+
+let conn;
+let db;
+
+async function connectToDatabase() {
   try {
-    //connect to the database
-     mongoose.connect(process.env.MONGO_URI);
-     mongoose.connection.once("open", () => {
-      console.log("connected to mongodb");
-    });
-  } catch (error) {
-    console.log(`Something went wrong connecting to mongodb: ${error.message}`);
+    conn = await client.connect();
+    db = conn.db("bakery");
+    console.log("Connected to database");
+  } catch (e) {
+    console.error("Failed to connect to MongoDB:", e);
   }
-};
+}
 
-module.exports = conn;
+
+
+module.exports = connectToDatabase;
