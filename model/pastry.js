@@ -16,7 +16,7 @@ const pastrySchema = new mongoose.Schema({
         required: true
     },
 
-    imageUrl:{
+    imgUrl:{
         type: String,
         required: false
     }

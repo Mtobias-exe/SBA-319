@@ -23,5 +23,14 @@ router.post('/', async(req, res) => {
     }
 })
 
+//edit route
+router.put('/pastry/data/:id', async(req, res)=>{
+  try {
+    const updatedPastry = await Fruit.findByIdAndUpdate(req.params.id, req.body)
+    res.json(updatedPastry)  
+  } catch (error) {
+      res.status(500).json({error: error.message})
+  }
+})
 
 module.exports = router

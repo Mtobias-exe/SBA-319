@@ -8,8 +8,9 @@ const Pastry = require('./model/pastry')
 const pastryRoutes = require('./routes/pastryRoutes')
 
 conn()
-
+app.use(express.json())
 app.use('/api/pastries', pastryRoutes)
+
 
 
 
