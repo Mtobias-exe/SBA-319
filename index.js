@@ -5,7 +5,11 @@ const port = process.env.PORT || 5000
 const conn = require('./db/conn')
 const starterPastry = require('./db/data')
 const Pastry = require('./model/pastry')
+const pastryRoutes = require('./routes/pastryRoutes')
+
 conn()
+
+app.use('/api/pastries', pastryRoutes)
 
 
 
