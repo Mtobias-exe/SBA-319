@@ -11,10 +11,16 @@ const starterUsers = require('./db/users')
 const Users = require('./model/usersModel')
 const usersRoutes = require('./routes/usersRoutes')
 
+const starterReviews = require('./db/reviews')
+const Reviews = require('./model/reviewsModel')
+const reviewsRoutes = require('./routes/reviewsRoutes')
+
+
 conn()
 app.use(express.json())
 app.use('/api/pastries', pastryRoutes)
 app.use('/api/users', usersRoutes)
+app.use('/api/reviews', reviewsRoutes)
 
 
 
@@ -35,14 +41,25 @@ app.get('/pastry/data', async (req, res) => {
     }
 })
 
-
+//user route
 app.get('/users/data', async (req, res) => {
     try {
         await Users.deleteMany({})
         await Users.create(starterUsers)
         res.json(starterUsers)
     } catch (error) {
-        console.log(`Something went wrong loading pastry data: ${error.message}`)
+        console.log(`Something went wrong loading user data: ${error.message}`)
+    }
+})
+
+//review route
+app.get('/reviews/data', async (req, res) => {
+    try {
+        await Reviews.deleteMany({})
+        await Reviews.create(starterReviews)
+        res.json(starterReviews)
+    } catch (error) {
+        console.log(`Something went wrong loading reviews data: ${error.message}`)
     }
 })
 

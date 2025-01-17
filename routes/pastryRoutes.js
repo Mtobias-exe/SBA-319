@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const Pastry = require('../model/pastry')
+const Pastry = require('../model/pastry');
+
 
 //get all pastries
 router.get('/', async(req, res)=>{
@@ -42,5 +43,7 @@ router.delete('/:id', async (req, res)=>{
   res.status(500).json({error: error.message})
   }
 })
+
+
 
 module.exports = router
